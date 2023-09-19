@@ -48,28 +48,33 @@ exports.accessChat = asyncHandler(async (req, res) => {
     }
   }
 });
-
 exports.getChats = asyncHandler(async (req, res) => {
   try {
+    const userId = req.user._id;
+
+    // Find chats where the current user is a participant
     const allChats = await Chat.find({
-      users: { $elemMatch: { $eq: req.user._id } },
+      users: { $elemMatch: { $eq: userId } },
     })
-      .populate("users", "-password")
-      .populate("latestMessage")
-      .populate("groupAdmins", "-password")
-      .sort({ updatedAt: -1 })
-      .then(async (results) => {
-        results = await User.populate(results, {
-          path: "latestMessage.sender",
-          select: "name Pic email",
-        });
-        res.status(200).json(results);
-      });
+      .populate({
+        path: 'users latestMessage groupAdmin',
+        select: '-password',
+      })
+      .sort({ updatedAt: -1 });
+
+    // Populate the 'latestMessage.sender' field
+    const populatedChats = await User.populate(allChats, {
+      path: 'latestMessage.sender',
+      select: 'name Pic email',
+    });
+
+    res.status(200).json(populatedChats);
   } catch (error) {
     console.error(error);
-    res.status(400).throw("Server Error");
+    res.status(500).json({ message: error.message });
   }
 });
+
 
 exports.createGroupChat = asyncHandler(async (req, res) => {
   if (!req.body.users || !req.body.name) {

@@ -6,7 +6,7 @@ import { useContext } from "react";
 
 
  const ChatProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('userInfo')));
     const [selectedChat, setSelectedChat] = useState(); 
     const [chats, setChats] = useState([]);
 
@@ -15,7 +15,7 @@ const navigate=useNavigate();
 
         const userInfo=JSON.parse(localStorage.getItem('userInfo'));
         setUser(userInfo);
-        if(!userInfo || userInfo===null){
+        if(!userInfo || userInfo===null || user===undefined){
 navigate('/');
 
         }

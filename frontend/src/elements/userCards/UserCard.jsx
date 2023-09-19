@@ -3,7 +3,7 @@ import { ChatState } from '../../context/ChatProvider'
 import{Box,Avatar,Text} from '@chakra-ui/react'
 
 function UserCard({handleFunction,user}) {
-    console.log(user)
+
 
   return (
     <Box

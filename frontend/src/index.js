@@ -14,10 +14,13 @@ root.render(
   
 
  <BrowserRouter>
- <ChatProvider><ChakraProvider>
+
+ <ChakraProvider>
+  <ChatProvider>
       <App />
+      </ChatProvider>
     </ChakraProvider>
-</ChatProvider>
+
  </BrowserRouter>
 
 );

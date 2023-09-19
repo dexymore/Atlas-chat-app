@@ -6,10 +6,11 @@ import { ChatState } from '../context/ChatProvider'
 import { Box } from '@chakra-ui/react'
 import SideDrawer from '../elements/parts/SideDrawer'
 import ChatBox from '../elements/ChatBox'
-import MyChat from '../elements/MyChat'
+import UserChats from '../elements/UserChats'
 
 function ChatPAge() {
 const user = ChatState()
+const [fetchAgain, setFetchAgain] = useState(false)
 
 
 
@@ -21,9 +22,9 @@ useEffect(() => {
   return (
 <div style={{width:"100%"}}>
 {<SideDrawer />}
-<Box className='box-chat'>
-  <MyChat></MyChat>
-  <ChatBox></ChatBox>
+<Box className='box-chat' >
+{user&&<UserChats fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />}
+{user&&<ChatBox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />}
 </Box>
 
 </div>

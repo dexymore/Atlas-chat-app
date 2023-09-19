@@ -32,12 +32,23 @@ background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(220,223,223,1) 10
 .App-link {
   color: #61dafb;
 }
+/* Hide scrollbar for all browsers */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* Optional: Set a background color if needed */
+}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Optional: Hide scrollbar track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Optional: Hide scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* Optional: Hide scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: transparent;
 }

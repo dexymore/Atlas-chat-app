@@ -14,7 +14,9 @@ import {
   DrawerHeader,
   DrawerBody,
   Input,
+
 } from "@chakra-ui/react";
+import { Spinner } from "@chakra-ui/spinner";
 import React from "react";
 import { useState, useEffect } from "react";
 import { BellIcon, ChevronDownIcon, Search2Icon } from "@chakra-ui/icons";
@@ -26,6 +28,7 @@ import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import ChatLoading from "./ChatLoading";
 import UserCard from "../userCards/UserCard";
+
 
 function SideDrawer() {
   const [search, setSearch] = useState("");
@@ -53,6 +56,9 @@ try{
     `/api/user/${id}`,
     config
   );
+
+if(!chats.find(chat=>chat._id===data._id))setChats([data,...chats])
+
   setSelectedChat(data)
   setLoadingChat(false);
   window.location.href = `/chat/${id}`;
@@ -184,7 +190,7 @@ catch(error){
     </UserCard>
   ))
 )}
-
+{loadingChat && <Spinner></Spinner>}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
