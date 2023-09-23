@@ -96,16 +96,16 @@ overflowY={'hidden'}
     (<Stack overflowY={'scroll'}>
 {chats.map((chat)=>(
     <Box onClick={()=>setSelectedChat(chat)} cursor={"pointer"} 
-        bg={selectedChat && selectedChat.id===chat.id?"":""}
-        color={selectedChat && selectedChat.id===chat.id?"white":"black"}
+        bg={ selectedChat===chat?"#38B2AC":"#E8E8E8"}
+        color={ selectedChat===chat?"white":"black"}
         p={3}
         borderRadius={'lg'}
         borderWidth={1}
         borderColor={'#black'}
-        key={!chat.isGroup?getSender(loggedUser,chat.users):chat.chatName}
+        key={chat.id}
 
     >
-<Text fontSize={{base:"xl",md:"2xl"}}>{chat.chatName}</Text>
+<Text fontSize={{base:"xl",md:"2xl"}}>{!chat.isGroupChat?getSender(user,chat.users):chat.chatName}</Text>
 
     </Box>
 ))}

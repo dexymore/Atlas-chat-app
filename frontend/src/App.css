@@ -1,6 +1,6 @@
 .App {
 
-
+  
 
 background: rgb(247,247,247);
 background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(220,223,223,1) 100%);
@@ -10,6 +10,7 @@ background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(220,223,223,1) 10
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -51,4 +52,10 @@ background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(220,223,223,1) 10
 /* Optional: Hide scrollbar thumb on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: transparent;
+}
+
+.messages{
+  display: flex;
+  flex-direction: column  ;
+overflow-y: scroll;
 }

@@ -27,7 +27,7 @@ import axios from "axios";
 import { set } from "mongoose";
 import UserCard from "../userCards/UserCard";
 
-function UpdateGroupChatModel({ fetchAgain, setFetchAgain }) {
+function UpdateGroupChatModel({ fetchAgain, setFetchAgain ,fetchMessages}) {
   const { selectedChat, setSelectedChat, chats, setChats } = ChatState();
   const user = JSON.parse(localStorage.getItem("userInfo"));
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -62,6 +62,7 @@ try {
     const {data} = await axios.put("/api/chat/groupremove", {chatId:selectedChat._id,userId:userToRemove._id}, config)
     userToRemove._id===user._id?setSelectedChat():setSelectedChat(data)
     setFetchAgain(!fetchAgain)
+    fetchMessages()
     setLoading(false)
     onClose()
     window.location.reload()

@@ -35,14 +35,17 @@ function SideDrawer() {
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState(false);
-  const { user,setSelectedChat ,chats, setChats} = ChatState();
+  const {setSelectedChat ,chats, setChats} = ChatState();
   const { isOpen, onClose, onOpen } = useDisclosure();
+const user = JSON.parse(localStorage.getItem("userInfo"));
+
   const logoutHandler = () => {
     localStorage.removeItem("userInfo");
     window.location.reload();
   };
   const toast = useToast();
   const accessChat = async (id) => {
+
 try{
   setLoadingChat(true);
   const config = {
@@ -52,22 +55,20 @@ try{
     },
   };
 
-  const { data } = await axios.get(
-    `/api/user/${id}`,
-    config
-  );
+  const { data } = await axios.post(`/api/chat`, { userId:id }, config);
 
 if(!chats.find(chat=>chat._id===data._id))setChats([data,...chats])
 
   setSelectedChat(data)
   setLoadingChat(false);
-  window.location.href = `/chat/${id}`;
+  onClose();
 
 }
 catch(error){
   setLoadingChat(false);
   toast({
-    title: "Something went wrong",
+    title: error.response.data.message,
+    
     status: "error",
     duration: 3000,
     isClosable: true,
@@ -184,10 +185,8 @@ catch(error){
             {loading ? (
   <ChatLoading></ChatLoading>
 ) : (
-  searchResults?.map((user) => ( // Changed 'res' to 'user'
-    <UserCard key={user._id} user={user !== null ? user : ""} handleFunction={() => accessChat(user._id)}>
-      {/* Content of the UserCard component */}
-    </UserCard>
+  searchResults?.map((u) => ( 
+    <UserCard key={u._id} user={u} handleFunction={()=>accessChat(u._id)}></UserCard>
   ))
 )}
 {loadingChat && <Spinner></Spinner>}
