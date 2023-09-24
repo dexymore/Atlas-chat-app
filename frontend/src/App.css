@@ -59,3 +59,25 @@ background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(220,223,223,1) 10
   flex-direction: column  ;
 overflow-y: scroll;
 }
+
+/* CSS in styles.css */
+/* CSS in styles.css */
+
+.notifactions{
+
+  background: rgb(223, 146, 146);
+  border-radius:14% ;
+  -webkit-border-radius:14% ;
+  -moz-border-radius:14% ;
+  -ms-border-radius:14% ;
+  -o-border-radius:14% ;
+}
+
+@keyframes bell-ring {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(10deg);
+  }
+}

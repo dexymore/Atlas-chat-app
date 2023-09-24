@@ -9,6 +9,7 @@ import { useContext } from "react";
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('userInfo')));
     const [selectedChat, setSelectedChat] = useState(); 
     const [chats, setChats] = useState([]);
+    const [notifications, setNotifications] = useState([]);
 
 const navigate=useNavigate();
     useEffect(() => {
@@ -22,7 +23,7 @@ navigate('/');
     }, [navigate]);
 
     return(
-        <ChatContext.Provider value={{ user, setUser ,selectedChat,setSelectedChat, chats,setChats}}>
+        <ChatContext.Provider value={{ user, setUser ,selectedChat,setSelectedChat, chats,setChats , notifications,setNotifications}}>
         {children}
       </ChatContext.Provider>
     )

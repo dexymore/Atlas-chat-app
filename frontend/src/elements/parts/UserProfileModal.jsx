@@ -10,6 +10,7 @@ import {
   ModalOverlay,
   Image,
   Text,
+  Avatar,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { IconButton } from "@chakra-ui/react";
@@ -62,6 +63,7 @@ function UserProfileModal({ user, children }) {
           {user !== null ? user.email : ""}
           </Text>
           </ModalBody>
+
 
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={onClose}>

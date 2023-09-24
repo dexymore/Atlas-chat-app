@@ -27,7 +27,7 @@ function ScrollAbleChat({ messages }) {
                 </Tooltip>
               ))}
 
-              <span style={{ backgroundColor: m.sender._id === user._id ? "#BEE3F8" : "#B9f5d0" ,borderRadius:20, padding:"5px 15px", maxWidth:"75%",marginLeft:isSameSenderMargin( messages,m,i,user._id), marginTop:isSameUser( messages,m,i,user._id)?3:10}}>
+              <span style={{ backgroundColor: m.sender._id === user._id ? "#B9f5d0" : "#BEE3F8" ,borderRadius:20, padding:"5px 15px", maxWidth:"75%",marginLeft:isSameSenderMargin( messages,m,i,user._id), marginTop:isSameUser( messages,m,i,user._id)?3:10}}>
               {m.content}
 </span>
 
