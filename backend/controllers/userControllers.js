@@ -3,7 +3,8 @@ const User = require("../models/userModel.js");
 const generateToken = require("../config/generateToken.js");
 
 exports.registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, profilePic } = req.body;
+  console.log(req.body);
+  const { name, email, password, pic } = req.body;
   if (!name || !email || !password) {
     res.status(400);
     throw new Error("Please fill all the fields");
@@ -13,7 +14,7 @@ exports.registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password,
-    profilePic,
+    pic,
   });
 
   if (user) {
@@ -21,7 +22,7 @@ exports.registerUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
-      profilePic: user.profilePic,
+      pic: user.pic,
       token: generateToken(user._id),
     });
   } else {

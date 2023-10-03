@@ -9,10 +9,11 @@ function UserCard({handleFunction,user}) {
     <Box
     onClick={handleFunction}
     cursor="pointer"
-    bg="#E8E8E8"
+    bg="#666"
     _hover={{
-      background: "#38B2AC",
+      background: "#724C9D",
       color: "white",
+      boxShadow:"0 4px 6px rgba(0, 0, 0, 0.1)"
     }}
     w="100%"
     d="flex"

@@ -1,4 +1,4 @@
-import {Box, useToast,Text, Button, Stack} from "@chakra-ui/react";
+import {Box, useToast,Text, Button, Stack, Avatar} from "@chakra-ui/react";
 import {useEffect, useState} from "react";
 import {ChatState} from "../context/ChatProvider";
 import GroupChatModel from "./parts/GroupChatModel";
@@ -14,6 +14,8 @@ const {selectedChat, setSelectedChat,chats,setChats} = ChatState()
 const toast = useToast();
 const user = JSON.parse(localStorage.getItem('userInfo'));
 const fetchChats=async()=>{
+
+
 try{
     const config = {
         headers: {
@@ -55,13 +57,15 @@ display={{base:selectedChat?"none":"flex",md:"flex"}}
 flexDirection={"column"}
 width={{base:"100%",md:"30%"}}
 m={1}
-bg={"#ffffff"}
+
 color={"black"}
 p={3}
+borderColor={"transparent"}
 alignItems={"center"}
 justifyContent={"space-between"}
 borderRadius={'lg'}
 borderWidth={1}
+className="black-bg"
 >
 
 <Box
@@ -74,8 +78,8 @@ justifyContent={"space-between"}
 width={"100%"}
 >
 
-MyChats
-<GroupChatModel childern={  <Button display={'flex'} fontSize={{ base: '17px', md: '10px', lg: '17px' }} rightIcon={<AddIcon />}>
+<Text className="white-color">Chats</Text>
+<GroupChatModel  childern={  <Button className="purple-bg white-color"  display={'flex'} fontSize={{ base: '17px', md: '10px', lg: '17px' }} rightIcon={<AddIcon />}>
     new group chat
   </Button>}>
 
@@ -93,18 +97,30 @@ overflowY={'hidden'}
 >
 {
     chats?
-    (<Stack overflowY={'scroll'}>
+    (<Stack overflowY={'scroll'} 
+    
+
+    >
 {chats.map((chat)=>(
     <Box onClick={()=>setSelectedChat(chat)} cursor={"pointer"} 
-        bg={ selectedChat===chat?"#38B2AC":"#E8E8E8"}
+        bg={ selectedChat===chat?"#724C9D":"#666666"}
         color={ selectedChat===chat?"white":"black"}
         p={3}
         borderRadius={'lg'}
         borderWidth={1}
-        borderColor={'#black'}
+        borderColor={'transparent'}
         key={chat.id}
-
+        w={"100%"}
+        display={"flex"}
+        flexDir={"row"}
+        alignItems={"center"}
+        
     >
+    <Avatar src={chat.users.filter(u=>u._id!==user._id)[0]?chat.users.filter(u=>u._id!==user._id)[0].pic:""}
+margin={"6px 12px 6px 0px"}
+>
+</Avatar>
+
 <Text fontSize={{base:"xl",md:"2xl"}}>{!chat.isGroupChat?getSender(user,chat.users):chat.chatName}</Text>
 
     </Box>

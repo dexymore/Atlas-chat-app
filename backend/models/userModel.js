@@ -14,14 +14,19 @@ const userSchema = mongoose.Schema(
         required: [true, 'a user must have email'],
         unique: true,
         lowercase: true,},
-    password: { type: String, required: true },
+    password: { type: String, required: true,
+      minlength: [8, 'a user password must be more or equal to 8 chars'] },
     pic: {
-      type: String,
-      default:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fstock.adobe.com%2Fsearch%2Fimages%3Fk%3Dunknown%2Buser&psig=AOvVaw0AxQa3MUsg5h8_p7vHnvfL&ust=1694443424550000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCOCFl-ejoIEDFQAAAAAdAAAAABAE",
+      type: String
+    
     },
   },
   { timestamps: true }
 );
+
+userSchema.pre("save", async function (next) {
+  
+});
 
 userSchema.pre("save", async function (next) {
     if(!this.isModified('password')){

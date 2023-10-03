@@ -68,12 +68,14 @@ const submitHandler = async () => {
 
   
     return (
-      <VStack spacing={5} color={"blackAlpha.700"}>
+      <VStack spacing={5}>
        
   
         <FormControl id="email" isRequired>
-          <FormLabel>email</FormLabel>
+          <FormLabel className=''>email</FormLabel>
           <Input
+          bg={"#666"}
+          border={"none"}
           value={email}
             type="email"
             placeholder=""
@@ -86,6 +88,8 @@ const submitHandler = async () => {
           <FormLabel>password</FormLabel>
           <InputGroup>
             <Input
+            bg={"#666"}
+            border={"none"}
             value={password}
               type={show ? "text" : "password"}
               placeholder=""
@@ -111,7 +115,7 @@ const submitHandler = async () => {
           <Button onClick={
               submitHandler
           }
-          style={{marginTop:12}}  w={"100%"} colorScheme="red"> login</Button>
+          style={{marginTop:12}}  w={"100%"} colorScheme="purple"> login</Button>
 
           <Button onClick={()=>{
             setEmail("guest@atlas.com")

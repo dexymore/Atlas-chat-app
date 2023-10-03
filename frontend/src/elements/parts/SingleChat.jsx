@@ -21,9 +21,9 @@ import io from "socket.io-client";
 import { useEffect } from "react";
 import Lottie from "lottie-react";
 import animationData from "../../animations/typing.json";
-
-const EndPoint = "ws://localhost:5000";
 let selectedChatCompare;
+const EndPoint = "ws://localhost:5000";
+
 const socket = io(EndPoint);
 
 function SingleChat({ fetchAgain, setFetchAgain }) {
@@ -183,21 +183,28 @@ function SingleChat({ fetchAgain, setFetchAgain }) {
             display={"flex"}
             justifyContent={"space-between"}
             alignItems={"center"}
+  
           >
             <IconButton
               display={{ base: "block", md: "none" }}
               onClick={() => setSelectedChat(null)}
+              className="white-color"
+              bg={"#666"}
               icon={<ArrowBackIcon />}
             ></IconButton>
 
             {!selectedChat.isGroupChat ? (
               <>
-                {getSender(user, selectedChat.users)}
+              <Text
+              className="white-color"
+              display={{ base: "none", md: "flex" }}
+              > {getSender(user, selectedChat.users)}</Text>
+                
                 <UserProfileModal
                   user={getSenderFull(user, selectedChat.users)}
                 >
                   <Box
-                    backgroundColor="white"
+                 
                     padding="16px"
                     borderRadius="12px"
                     boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
@@ -208,21 +215,29 @@ function SingleChat({ fetchAgain, setFetchAgain }) {
                     fontSize="18px"
                     textAlign="center"
                     textTransform="uppercase"
+                    className="purple-bg white-color"
                   >
                     <ViewIcon></ViewIcon>
+                    <Text ml={2}>Profile</Text>
                   </Box>
+                  
                 </UserProfileModal>
               </>
             ) : (
               <>
+               <Text
+               className="white-color"
+                display={{ base: "none", md: "flex" }}
+               >
                 {selectedChat.chatName}
+               </Text>
                 <UpdateGroupChatModel
                   fetchAgain={fetchAgain}
                   setFetchAgain={setFetchAgain}
                   fetchMessages={fetchMessages}
                 >
                   <Box
-                    backgroundColor="white"
+                 
                     padding="16px"
                     borderRadius="12px"
                     boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
@@ -233,8 +248,11 @@ function SingleChat({ fetchAgain, setFetchAgain }) {
                     fontSize="18px"
                     textAlign="center"
                     textTransform="uppercase"
+                
                   >
-                    <ViewIcon></ViewIcon>
+                    <ViewIcon
+                        className="purple-bg white-color"
+                    ></ViewIcon>
                   </Box>
                 </UpdateGroupChatModel>
               </>
@@ -246,11 +264,12 @@ function SingleChat({ fetchAgain, setFetchAgain }) {
             width={"100%"}
             height={"100%"}
             overflowY={"hidden"}
-            backgroundColor={"#e8e8e8"}
+            
             borderRadius={"lg"}
             justifyContent={"flex-end"}
             p={3}
             m={1}
+            className="black-bg "
           >
             {loading ? (
               <Spinner
@@ -281,6 +300,8 @@ function SingleChat({ fetchAgain, setFetchAgain }) {
                 variant={"filled"}
                 placeholder={"type a message"}
                 onChange={typingHandler}
+   bg={"#666"}
+   className="white-color"
               />
             </FormControl>
           </Box>

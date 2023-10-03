@@ -5,6 +5,7 @@ const connectDB = require("./config/db.js");
 const UserRoutes = require("./routes/UserRoute.js");
 const ChatRoutes = require("./routes/chatRoute.js");
 const MessageRoutes = require("./routes/messageRoutes.js");
+const Chat=require("./models/chatModel.js")
 const { notfound, errorHandler } = require("./middlewares/errorMiddleware.js");
 dotenv.config();
 const app = express();
@@ -34,16 +35,20 @@ const io = require("socket.io")(server, {
 
 io.on("connection", (socket) => {
   console.log("connected to socket io");
+  // socket.emit('me',socket.id)
 
+let myuser
   socket.on("setup", (userData) => {
     if (!userData) return;
+myuser=userData
     socket.join(userData._id);
     console.log("user joined", userData._id);
     socket.emit("connected");
   });
 
-  socket.on("join room", (room) => {
+  socket.on("join room",async (room) => {
     socket.join(room);
+// myChat = await Chat.findById(room)
     console.log("joined room", room);
   });
   socket.on("typing", (room) => {
@@ -51,7 +56,25 @@ io.on("connection", (socket) => {
   });
   socket.on("stop typing", (room) => {
     socket.in(room).emit("stop typing");
+
   });
+
+  // socket.emit("testEvent", "Hello from the server!");
+// User 1 emits "callUser"
+socket.on("callUser", (chat) => {
+  
+  try {
+    const recipient = chat.users.find(user => user._id !== myuser._id);
+    // console.log("Call initiated by:", myuser);
+    // console.log("Recipient:", recipient);
+    socket.to(recipient._id).emit("receiveCall", recipient);
+  } catch (error) {
+    console.error("Error handling callUser event:", error);
+  }
+  
+});
+
+
 
   socket.on("new message", (newMessage) => {
     // console.log("new message", newMessage);

@@ -71,6 +71,7 @@ function GroupChatModel({ childern }) {
         isClosable: true,
         position: "top",
       });
+      return;
     }
     setSelectedUsers([...selectedUsers, userToAdd]);
   };
@@ -109,6 +110,10 @@ function GroupChatModel({ childern }) {
         position: "top",
 
     })
+    setSelectedUsers([])
+    setSearchResults([]);
+    setGroupChatName("");
+    setSearch("");
     } catch (error) {}
   };
   const handleDelete = (userToDelete) => {
@@ -123,7 +128,9 @@ function GroupChatModel({ childern }) {
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent
+        className="black-bg white-color"
+        >
           <ModalHeader
             fontSize={"35px"}
             fontFamily={"work sans"}
@@ -144,6 +151,7 @@ function GroupChatModel({ childern }) {
                 placeholder="group name"
                 value={groupChatName}
                 mb={3}
+                border={"none"}
                 onChange={(e) => setGroupChatName(e.target.value)}
               />
             </FormControl>
@@ -153,6 +161,7 @@ function GroupChatModel({ childern }) {
                 placeholder="search for users"
                 value={search}
                 mb={1}
+                border={"none"}
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
@@ -188,7 +197,9 @@ function GroupChatModel({ childern }) {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={handleSubmit}>
+            <Button 
+            className="purple-bg white-color"
+             mr={3} onClick={handleSubmit}>
               create group
             </Button>
           </ModalFooter>

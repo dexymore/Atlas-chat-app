@@ -25,20 +25,29 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import { useToast } from "@chakra-ui/react";
 import { getSender } from "../../config/chatLogic";
 
+
+import { io } from "socket.io-client";
+
+
+
 import axios from "axios";
 import ChatLoading from "./ChatLoading";
 import UserCard from "../userCards/UserCard";
 import { set } from "mongoose";
-
+const EndPoint = "ws://localhost:5000";
+const socket = io(EndPoint);
 function SideDrawer() {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState(false);
-  const { setSelectedChat, chats, setChats, notifications, setNotifications } =
-    ChatState();
+  const { setSelectedChat, chats,selectedChat, setChats, notifications, setNotifications,setCall,call } =ChatState();
   const { isOpen, onClose, onOpen } = useDisclosure();
   const user = JSON.parse(localStorage.getItem("userInfo"));
+
+
+ 
+
 
   const logoutHandler = () => {
     localStorage.removeItem("userInfo");
@@ -115,13 +124,26 @@ function SideDrawer() {
       <Box
         display="flex"
         justifyContent="space-between"
-        bg="white"
+    
         w={"100%"}
-        borderWidth={5}
-        p="5px 10px 5px 10px"
+        borderWidth={0}
+   
+
+
+        p="8px 12px 8px 12px"
+        className='black-bg white-color'
+  
+        
+
+        
+        
       >
         <Tooltip label="search for users" hasArrow placement="bottom-end">
-          <Button variant={"ghost"} onClick={onOpen}>
+          <Button
+          
+           onClick={onOpen}
+           className="purple-bg white-color"
+           >
             <Search2Icon></Search2Icon>
             <Text display={{ base: "none", md: "flex" }} px="4">
               search
@@ -138,10 +160,11 @@ function SideDrawer() {
               <BellIcon fontSize="2xl" m={1}  >{notifications?"":""}</BellIcon>
               </div>
             </MenuButton>
-            <MenuList pl={2}>
+            <MenuList pl={2} className ="black-bg">
               {!notifications.length && "No New Messages"}
               {notifications.map((notif) => (
                 <MenuItem
+                className="black-bg white-color"
                   key={notif._id}
                   onClick={() => {
                     setSelectedChat(notif.chat);
@@ -155,8 +178,11 @@ function SideDrawer() {
               ))}
             </MenuList>
           </Menu>
-          <Menu>
-            <MenuButton
+          <Menu  >
+            <MenuButton 
+
+            ml={3}
+            className="purple-bg"
               as={Button}
               rightIcon={<ChevronDownIcon></ChevronDownIcon>}
             >
@@ -165,34 +191,49 @@ function SideDrawer() {
                 cursor={"pointer"}
                 name={user !== null ? user.name : ""}
                 src={user !== null ? user.pic : ""}
+                
               ></Avatar>
             </MenuButton>
-            <MenuList>
+            <MenuList
+            className="black-bg white-color"
+             >
               <UserProfileModal user={user}>
-                <MenuItem variant={"ghost"}>Profile</MenuItem>
+                <MenuItem className="black-bg white-color">Profile</MenuItem>
               </UserProfileModal>
-              <MenuItem variant={"ghost"} onClick={logoutHandler} colors>
+              <MenuItem className="black-bg white-color" onClick={logoutHandler} colors>
                 Logout
               </MenuItem>
             </MenuList>
           </Menu>
         </div>
       </Box>
-      <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
+      <Drawer placement="left" onClose={onClose} isOpen={isOpen} 
+
+      >
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth={"1px"}>search</DrawerHeader>{" "}
-          <DrawerBody>
-            <Box display={"flex"} pb={2}>
+          <DrawerHeader 
+          borderBottomWidth={"1px"}
+      
+          className="black-bg white-color"
+          >search</DrawerHeader>{" "}
+          <DrawerBody
+                className="black-bg white-color">
+            <Box display={"flex"} pb={2}
+            
+            >
               <Input
                 placeholder={"search for users"}
+                bg={'#666'}
                 mr={2}
                 value={search}
                 onChange={(e) => {
                   setSearch(e.target.value);
                 }}
               />
-              <Button onClick={handleSearch}>Go</Button>
+              <Button onClick={handleSearch}
+              className="purple-bg white-color"
+              >Go</Button>
             </Box>
             {loading ? (
               <ChatLoading></ChatLoading>
@@ -202,6 +243,7 @@ function SideDrawer() {
                   key={u._id}
                   user={u}
                   handleFunction={() => accessChat(u._id)}
+    
                 ></UserCard>
               ))
             )}

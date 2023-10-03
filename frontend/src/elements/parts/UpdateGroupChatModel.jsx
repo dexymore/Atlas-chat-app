@@ -213,14 +213,20 @@ try {
   return (
     <>
       <IconButton
+className="purple-bg white-color"
         onClick={onOpen}
         display={{ base: "flex" }}
         icon={<ViewIcon></ViewIcon>}
       ></IconButton>
 
-      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+      <Modal 
+      isOpen={isOpen} onClose={onClose} isCentered
+
+      >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent
+              className="black-bg white-color"
+        >
           <ModalHeader fontSize={"2xl"} fontFamily={"work sans"}>
             {selectedChat.chatName}
           </ModalHeader>
@@ -240,12 +246,17 @@ try {
                 placeholder="chat name"
                 mb={3}
                 value={groupChatName}
+                bg={"#666"}
                 onChange={(e) => setGroupChatName(e.target.value)}
+                border={"none"}
               ></Input>
               <Button
-                colorScheme={"messenger"}
+                ml={2}
+                className="white-color"
+                bg={"#724C9D "}
                 onClick={handleRename}
                 isLoading={renameLoading}
+                _hover={{ bg: "#8B5EA9" }}
               >
                 rename
               </Button>
@@ -256,7 +267,10 @@ try {
                 type="text"
                 placeholder="search for users to add"
                 value={search}
-                mb={1}
+                mb={2}
+                bg={"#666"}
+              color={"white"}
+                border={"none"}
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
@@ -274,7 +288,9 @@ try {
           </ModalBody>
 
           <ModalFooter>
-            <Button mr={0} onClick={onClose} m={0}>
+            <Button
+            bg={"#666"}
+             mr={0} onClick={onClose} m={0}>
               Close
             </Button>
           </ModalFooter>

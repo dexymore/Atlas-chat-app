@@ -15,10 +15,31 @@ import {
 import { useDisclosure } from "@chakra-ui/hooks";
 import { IconButton } from "@chakra-ui/react";
 import { ViewIcon } from "@chakra-ui/icons";
+import { ChatState } from "../../context/ChatProvider";
+import { useState } from "react";
+import { useEffect } from "react";
+import io from "socket.io-client";
+
+const EndPoint = "ws://localhost:5000";
+
+const socket = io(EndPoint);
 
 
 function UserProfileModal({ user, children }) {
+
+  const [socketConnected, setSocketConnected] = useState(false);
+  const [userCall, setUserCall] = useState(false);
+
+  const {selectedChat}=ChatState();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  // const myUser=JSON.parse(localStorage.getItem("userInfo"))
+
+
+
+
+  
+
+
   return (
     <>
       {children ? (
@@ -33,7 +54,9 @@ function UserProfileModal({ user, children }) {
 
       <Modal isOpen={isOpen} onClose={onClose} size={'lg'} isCentered>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent
+        className="black-bg white-color"
+        >
           <ModalHeader
           fontSize={"2xl"}
           fontFamily={"work sans"}
@@ -65,11 +88,14 @@ function UserProfileModal({ user, children }) {
           </ModalBody>
 
 
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+          <ModalFooter> 
+                 {/* <Button variant="ghost" m={3} p={6} onClick={handleCall}  >call</Button> */}
+            <Button 
+            bg={"#666"}
+             mr={3} onClick={onClose}>
               Close
             </Button>
-            {/* <Button variant="ghost">Secondary Action</Button> */}
+    
           </ModalFooter>
         </ModalContent>
       </Modal>

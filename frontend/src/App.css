@@ -2,8 +2,7 @@
 
   
 
-background: rgb(247,247,247);
-background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(220,223,223,1) 100%);
+/* background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(220,223,223,1) 100%); */
 
 }
 
@@ -81,3 +80,136 @@ overflow-y: scroll;
       transform: rotate(10deg);
   }
 }
+
+
+#videos{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1em;
+  width: 100%;
+  padding: 10px;
+}
+
+video{
+  width:100%;
+  border:2px solid greenyellow;
+  background-color: rgb(63,62,62);
+}
+
+textarea{
+  height: 50px;
+  width: 100%;
+}
+
+.black-bg{
+  background-color: #1e1e1e !important;
+
+}
+
+.white-color{
+color : #f8f8f8 !important;
+}
+.purple-bg{
+  background-color: #b65fcf!important;
+  box-shadow: #724C9D 0px 0px 4px 0px;
+  
+  
+
+}
+.purple-color{
+  color: #724C9D!important;
+}
+.joinus {
+  border-radius: 100% 0% 79% 21% / 0% 55% 45% 100% ;
+  background: #ff0099;
+  background-image: linear-gradient(45deg, #3023ae 0%, #ff0099 100%);
+  width: 85%;
+  height: 100vh;
+  border-width: 0px;
+  -webkit-border-radius:;
+  -moz-border-radius:;
+  -ms-border-radius:;
+  -o-border-radius:;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: #724C9D 0px 0px 2px 0px;
+}
+
+
+.joinAtlasNow{
+  font-size: 3rem;
+  color: #fff;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  display: flex; 
+
+  justify-content: center;
+  align-items: center;
+}
+.homeparent{
+  display: flex;
+  flex-direction: row;
+
+  background: #d1007d;
+  background-image: linear-gradient(90deg, #0d0c16 0%, #941360 100%);
+}
+@media screen and (max-width: 768px) {
+  .homeparent {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .joinAtlasNow{
+    font-size: 2rem;
+    color: #fff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    display: flex; 
+  
+    justify-content: center;
+    align-items: center;
+  }
+
+  .joinus {
+   border-radius:100% 0% 86% 14% / 37% 82% 18% 63%   ;
+   background: #ff0099;
+   background-image: linear-gradient(45deg, #3023ae 0%, #ff0099 100%);
+   width: 100%;
+   height: 70vh;
+   border-radius:   100% 0% 100% 0% / 0% 57% 43% 100% ;
+   position: relative;
+   overflow: hidden;
+   margin: 0 auto;
+   padding: 0;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   -webkit-border-radius:100% 0% 86% 14% / 37% 82% 18% 63%   ;
+   -moz-border-radius:100% 0% 86% 14% / 37% 82% 18% 63%   ;
+   -ms-border-radius:100% 0% 86% 14% / 37% 82% 18% 63%   ;
+   -o-border-radius:100% 0% 86% 14% / 37% 82% 18% 63%   ;
+}
+
+
+}
+
+  
+ 
