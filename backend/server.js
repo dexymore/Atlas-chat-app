@@ -16,9 +16,7 @@ const app = express();
 connectDB();
 // helmet is a middleware that adds extra security headers to our requests
 app.use(helmet());
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+
 app.use(express.json({ limit: "50kb"}));
 app.use(mongoSanitize());
 app.use(xss());
@@ -27,6 +25,23 @@ app.use(hpp());
 app.use("/api/chat", ChatRoutes);
 app.use("/api/user", UserRoutes);
 app.use("/api/message", MessageRoutes);
+
+
+//Deployment on render
+
+const __dirname = path.resolve();
+if(process.env.NODE_ENV==='production'){
+app.use(express.static(path.join(__dirname,'/frontend/build')))
+
+app.get("*",(req,res)=>res.sendFile(path.resolve(__dirname,'frontend','build','index.html')))
+
+}else{
+
+  app.get("/", (req, res) => {
+    res.send("Hello World!");
+  });
+}
+
 
 const PORT = process.env.PORT || 5000;
 

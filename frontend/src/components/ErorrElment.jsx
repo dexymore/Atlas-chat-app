@@ -8,7 +8,7 @@ function ErorrElment() {
     <div className='erorr'>
 <Lottie
 animationData={animationData}
-style={{ width: "40%", height: "40%", marginLeft: 10 }}
+className='erorr-animation'
                   loop={true}
                   autoPlay={true}
 >
