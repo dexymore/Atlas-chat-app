@@ -16,7 +16,13 @@ const app = express();
 
 connectDB();
 // helmet is a middleware that adds extra security headers to our requests
-app.use(helmet());
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    connectSrc: ["'self'", "http://localhost:5000"], // Add the WebSocket server URL here
+    // Add other CSP directives as needed
+  },
+}));
 
 app.use(express.json({ limit: "50kb"}));
 app.use(mongoSanitize());
