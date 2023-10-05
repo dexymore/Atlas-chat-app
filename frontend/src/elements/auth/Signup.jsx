@@ -124,7 +124,7 @@ function Signup() {
       };
 
       const userData = { name, email, password, passwordConfirm,pic };
-  console.log(userData)
+
       const response = await axios.post("/api/user", userData, config);
   
       // Handle success

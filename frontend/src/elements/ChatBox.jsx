@@ -19,15 +19,14 @@ function ChatBox({ fetchAgain, setFetchAgain}) {
   // const socketRef = useRef();
   const [socketConnected, setSocketConnected] = useState(false);
 
-  console.log("Socket connected:", socket.connected);
   const user=JSON.parse(localStorage.getItem("userInfo"))
   useEffect(() => {
     // socket=io(EndPoint);
-    console.log(socket);
+
   
     socket.emit("setup", user);
     socket.on("connected", () => {
-      console.log("chat box connected");
+
       setSocketConnected(true);
     });
     

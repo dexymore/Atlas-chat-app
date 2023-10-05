@@ -67,7 +67,7 @@ function SingleChat({ fetchAgain, setFetchAgain }) {
         e.target.value = "";
         socket.emit("new message", data);
 
-        console.log(data);
+
         setMessages([...messages, data]);
       } catch (error) {
         toast({
@@ -96,7 +96,7 @@ function SingleChat({ fetchAgain, setFetchAgain }) {
         `/api/message/${selectedChat._id}`,
         config
       );
-      console.log(data);
+
       setMessages(data);
       setLoading(false);
       socket.emit("join room", selectedChat._id);
@@ -112,8 +112,7 @@ function SingleChat({ fetchAgain, setFetchAgain }) {
   };
   useEffect(() => {
     // socket=io(EndPoint);
-    console.log(socket);
-    console.log(user);
+   
     socket.emit("setup", user);
     socket.on("connect", () => {
       setSocketConnected(true);

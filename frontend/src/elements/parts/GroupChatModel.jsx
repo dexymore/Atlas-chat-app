@@ -48,7 +48,7 @@ function GroupChatModel({ childern }) {
       const { data } = await axios.get(`/api/user?search=${query}`, config);
       setLoading(false);
       setSearchResults(data);
-      console.log(data);
+
     } catch (error) {
       setLoading(false);
       toast({

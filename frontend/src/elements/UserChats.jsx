@@ -24,11 +24,11 @@ try{
     }
 
     const {data} = await axios.get("/api/chat", config)
-  console.log(data)
+
     setChats(data)
 }
 catch (error){
-    console.log(error)
+
     toast({
         title: "An error occurred.",
         description: "Unable to get chats.",
