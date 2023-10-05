@@ -9,7 +9,7 @@ import { set } from "mongoose";
 import{init,createOffer,createAnswer,addAnswer} from '../../config/videoLogic'
 import { ChatState } from "../../context/ChatProvider";
 import { io } from "socket.io-client";
-const EndPoint = "ws://localhost:5000";
+const EndPoint = "http://localhost:5000";
 
 const socket = io(EndPoint);
 
