@@ -31,5 +31,15 @@ message his frineds
 
 
 
+<p>
+the backend is made using node.js and express
+the database is made with mongo db 
+the frontend is made using react,lottie,css and chakra ui
+
+</p>
+<h5>
+register/login page
+</h5>
+<img src="./readmeimages/Screenshot 2023-10-05 132617.png">
 
 
