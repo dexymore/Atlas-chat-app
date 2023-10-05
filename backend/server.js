@@ -19,7 +19,7 @@ connectDB();
 app.use(helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ["'self'"],
-    connectSrc: ["'self'", "http://localhost:5000"], // Add the WebSocket server URL here
+    connectSrc: ["'self'", "http://localhost:5000", "ws://localhost:5000"], // Add the WebSocket server URL here
     // Add other CSP directives as needed
   },
 }));
