@@ -34,7 +34,7 @@ message his frineds
 <p>
 the backend is made using node.js and express
 the database is made with mongo db 
-the frontend is made using react,lottie,css and chakra ui
+the frontend is made using react,lottie,css and chakra ui and its a responsive design
 
 </p>
 <h5>
@@ -47,7 +47,9 @@ register/login page
 <h5>search for users</h5>
 <img src="/readmeimages/Screenshot 2023-10-05 133530.png">
 
-<h6>
+<h5>chatting between two users</h5>
+<img src="./readmeimages/Screenshot 2023-10-05 133851.png">
+<h2>
 what to do next? is impelmenting video chat feature and sending emails 
-</h6>
+</h2>
 
