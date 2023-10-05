@@ -49,6 +49,9 @@ register/login page
 
 <h5>chatting between two users</h5>
 <img src="./readmeimages/Screenshot 2023-10-05 133851.png">
+<h5>erorr page</h5>
+<img src="./readmeimages/Screenshot 2023-10-05 140042.png">
+
 <h2>
 what to do next? is impelmenting video chat feature and sending emails 
 </h2>
