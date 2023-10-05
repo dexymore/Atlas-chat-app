@@ -42,4 +42,12 @@ register/login page
 </h5>
 <img src="./readmeimages/Screenshot 2023-10-05 132617.png">
 
+<h5>user homepage</h5>
+<img src="/readmeimages/Screenshot 2023-10-05 133315.png">
+<h5>search for users</h5>
+<img src="/readmeimages/Screenshot 2023-10-05 133530.png">
+
+<h6>
+what to do next? is impelmenting video chat feature and sending emails 
+</h6>
 
