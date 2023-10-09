@@ -9,7 +9,7 @@ import { RepeatClockIcon } from '@chakra-ui/icons'
 import {peer,localStream,remoteStream,c} from '../config/videoLogic'
 
 
-const EndPoint = "http://localhost:5000";
+const EndPoint = "ws://localhost:5000";
 const socket = io(EndPoint);
 
 function ChatBox({ fetchAgain, setFetchAgain}) {

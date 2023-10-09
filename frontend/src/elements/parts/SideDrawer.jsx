@@ -34,7 +34,7 @@ import axios from "axios";
 import ChatLoading from "./ChatLoading";
 import UserCard from "../userCards/UserCard";
 import { set } from "mongoose";
-const EndPoint = "http://localhost:5000";
+const EndPoint = "ws://localhost:5000";
 const socket = io(EndPoint);
 function SideDrawer() {
   const [search, setSearch] = useState("");

@@ -7,6 +7,7 @@ const UserRoutes = require("./routes/UserRoute.js");
 const ChatRoutes = require("./routes/chatRoute.js");
 const MessageRoutes = require("./routes/messageRoutes.js");
 const helmet = require("helmet");
+const cors = require("cors");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
@@ -28,6 +29,7 @@ app.use(express.json({ limit: "50kb"}));
 app.use(mongoSanitize());
 app.use(xss());
 app.use(hpp());
+app.use(cors());
 
 app.use("/api/chat", ChatRoutes);
 app.use("/api/user", UserRoutes);
@@ -59,7 +61,7 @@ const server = app.listen(PORT, () => {
   console.log(`Server running on port   http://localhost:${PORT}`);
 });
 const io = require("socket.io")(server, {
-  pingTimeout: 60000,
+  pingTimeout: 600000,
   cors: {
     origin: "*",
   },

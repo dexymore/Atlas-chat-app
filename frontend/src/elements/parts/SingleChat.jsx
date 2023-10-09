@@ -22,7 +22,7 @@ import { useEffect } from "react";
 import Lottie from "lottie-react";
 import animationData from "../../animations/typing.json";
 let selectedChatCompare;
-const EndPoint = "http://localhost:5000";
+const EndPoint = "ws://localhost:5000";
 
 const socket = io(EndPoint);
 

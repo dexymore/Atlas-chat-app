@@ -20,7 +20,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import io from "socket.io-client";
 
-const EndPoint = "http://localhost:5000";
+const EndPoint = "ws://localhost:5000";
 
 const socket = io(EndPoint);
 
